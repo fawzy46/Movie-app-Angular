@@ -13,8 +13,8 @@ import { AuthGuardService } from './auth-guard.service';
 
 const appRoutes: Routes =[
   {path: '', component: LoginformComponent} , 
-  {path: 'catalog',/*canActivate: [AuthGuardService] ,*/ component: CatalogComponent} ,
-  {path: 'catalog/:id', /*canActivate: [AuthGuardService],*/ component: MovieDetailComponent} 
+  {path: 'catalog',canActivate: [AuthGuardService] , component: CatalogComponent} ,
+  {path: 'catalog/:id',canActivate: [AuthGuardService], component: MovieDetailComponent} 
 ]
 
 @NgModule({
