@@ -1,0 +1,23 @@
+.card {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+img:hover {
+    opacity: .8;
+}
+.card-body {
+    height: 160px;
+}
+img {
+    height: 412px;
+}
+h4 {
+    display: inline;
+}
+.topcontainer {
+    margin-bottom: 25px;
+}
+button{
+    float: right;
+    margin-right: 30px;
+}

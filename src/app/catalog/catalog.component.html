@@ -1,0 +1,27 @@
+<div class="topcontainer">
+    <h4 *ngIf="sortedbyTop else elseblock">Top Rated Movies</h4>
+    <ng-template #elseblock>
+        <h4>Popular Movies</h4>
+    </ng-template>
+    <button *ngIf="sortedbyTop else elseblock2" (click)="getPopularMovies()" type="button" class="btn btn-dark" id="pb">What's Popular</button>
+    <ng-template #elseblock2>
+        <button (click)="getMovies()" type="button" class="btn btn-dark" id="trb">Top Rated</button>
+    </ng-template>
+</div>
+
+<div class="row">
+    <div *ngFor="let movie of movies" class="col-md-3">
+        <div class="card" id="card" [routerLink]="[movie.id]" style="width: 280px;">
+            <div class="card-img-top">
+                <img  class="img-thumbnail" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
+            </div>
+            <div class="card-body" >
+                <h3>
+                    {{ movie.vote_average }}
+                </h3>
+                <h5 class="card-title">{{ movie.title }}</h5>
+                <span>Popularity: {{movie.popularity}}</span>
+            </div>
+        </div>
+    </div>
+</div>
