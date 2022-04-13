@@ -9,11 +9,13 @@ import { MoviesService } from '../movies.service';
 })
 export class MovieDetailComponent implements OnInit {
   selectedMovie: any;
+  MovieLang!: string;
   constructor(private moviesService: MoviesService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
     this.selectedMovie = [];
+    this.MovieLang = '';
     this.route.params.subscribe(params => {
       let id = params['id'];
       if (id) this.getDetailes(id)
@@ -24,7 +26,8 @@ export class MovieDetailComponent implements OnInit {
       .subscribe(
         response => {this.selectedMovie = response
           this.selectedMovie[23] *= 10;
-          console.log(this.selectedMovie);
+          this.selectedMovie[12] = "https://image.tmdb.org/t/p/w500" + this.selectedMovie[12];
+          this.MovieLang = this.selectedMovie[18][0].english_name;
         });
       }
 }
