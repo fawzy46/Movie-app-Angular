@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   }
   Logout() {
     this.authservice.Logout();
-    console.log("FFFF");
     this.router.navigate(['']);
   }
 

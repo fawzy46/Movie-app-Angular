@@ -12,9 +12,13 @@ import { AuthService } from '../auth.service';
 export class LoginformComponent implements OnInit {
 
   constructor(private router: Router, private authservice: AuthService) { }
-
+  Token!: string;
   ngOnInit(): void {
-
+    this.authservice.KeepMeLoggedIn();
+    if(this.authservice.isLogedin)
+    {
+      this.router.navigate(['/catalog']);
+    }
   }
   onSubmit(form: NgForm)
   {

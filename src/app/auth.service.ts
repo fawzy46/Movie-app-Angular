@@ -1,18 +1,36 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService{
+export class AuthService implements OnInit {
   
   isLogedin: boolean = false;
+  Token!: String;
   constructor(private router: Router) { }
 
+  ngOnInit(): void {
+
+  }
+  
+  KeepMeLoggedIn()
+  {
+    this.Token = String(localStorage.getItem('token'));
+    if(this.Token === "true")
+    {
+      this.isLogedin = true;
+    }
+    else
+    {
+      this.isLogedin = false;
+    }
+  }
   isAuthentecated() {
+    this.KeepMeLoggedIn();
     const promise = new Promise(
-      (resolve, reject) => {  
+      (resolve) => {  
           resolve(this.isLogedin);
       }
     );
@@ -22,10 +40,10 @@ export class AuthService{
   {
     if(form.value.email === 'fawzy.fawzy46@gmail.com' && form.value.password === 'abc')
     {
-      console.log('gg');
       form.reset();
       this.router.navigate(['catalog']);
       this.isLogedin = true;
+      localStorage.setItem('token',String(this.isLogedin));
     }
     else
     {
@@ -35,6 +53,7 @@ export class AuthService{
   Logout()
   {
     this.isLogedin = false;
+    localStorage.setItem('token', String(this.isLogedin));
     return false;
   }
 
