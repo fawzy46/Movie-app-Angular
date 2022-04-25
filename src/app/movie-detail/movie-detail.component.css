@@ -3,6 +3,8 @@ img {
     border-radius: 16px;
     float: left;
     margin-right: 50px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 .container {
     margin-top: 5%;

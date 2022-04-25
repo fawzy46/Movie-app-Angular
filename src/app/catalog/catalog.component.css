@@ -12,7 +12,8 @@ img {
     height: 412px;
 }
 h4 {
-    display: inline;
+    display: inline-block;
+    padding-top: 5px;
 }
 .topcontainer {
     margin-bottom: 25px;
@@ -20,4 +21,7 @@ h4 {
 button{
     float: right;
     margin-right: 30px;
+}
+.col-md-3{
+    margin-left: auto;
 }

@@ -10,7 +10,7 @@
 </div>
 <hr>
 <div class="row">
-    <div *ngFor="let movie of movies" class="col-md-3">
+    <div *ngFor="let movie of movies" class="col-md-3" >
         <div class="card" id="card" [routerLink]="[movie.id]" style="width: 280px;">
             <div class="card-img-top">
                 <img  class="img-thumbnail" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
