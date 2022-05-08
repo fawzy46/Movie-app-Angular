@@ -16,6 +16,7 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    //this.test();
   }
 
   getMovies() {
@@ -38,5 +39,11 @@ export class CatalogComponent implements OnInit {
       }
     })
   }
+
+  /*test() {
+    this.moviesService.test().subscribe((res: any) => {
+      console.log(res);
+    })
+  }*/
 
 }

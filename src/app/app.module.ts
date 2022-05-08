@@ -10,11 +10,15 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { AuthGuardService } from './auth-guard.service';
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
+import { ConfirmPasswordValidatorDirective } from './sign-up-form/shared/confirm-password-validator.directive';
+import { AuthGuardInverseService } from './auth-guard-inverse.service';
 
 const appRoutes: Routes =[
   {path: '', component: LoginformComponent} , 
   {path: 'catalog',canActivate: [AuthGuardService] , component: CatalogComponent} ,
-  {path: 'catalog/:id',canActivate: [AuthGuardService], component: MovieDetailComponent} 
+  {path: 'catalog/:id',canActivate: [AuthGuardService], component: MovieDetailComponent} ,
+  {path: 'signup',canActivate: [AuthGuardInverseService], component: SignUpFormComponent}
 ]
 
 @NgModule({
@@ -24,6 +28,8 @@ const appRoutes: Routes =[
     LoginformComponent,
     CatalogComponent,
     MovieDetailComponent,
+    SignUpFormComponent,
+    ConfirmPasswordValidatorDirective,
   ],
   imports: [
     BrowserModule,
