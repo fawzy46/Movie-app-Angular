@@ -23,21 +23,13 @@ export class SignUpFormComponent implements OnInit {
   }
   onSubmit(form: NgForm)
   {
-    /*this.SignupService.AddUser(form);
-    this.isValidSignup = this.SignupService.isValidSignup;
-    console.log("signup-form + " + this.SignupService.isValidSignup);*/
     const PostData = {
       name: form.value.name,
       email: form.value.email,
       password: form.value.password
     }
-
-    this.http.post(this.url,PostData).subscribe(responseData => {
-      this.isValidSignup = !!responseData;
-      if(this.isValidSignup) {
-        this.router.navigate(['/']);
-      }
-    });
+    this.SignupService.AddUser(PostData).subscribe(response => this.isValidSignup = !!response);
+    this.isValidSignup = this.SignupService.isValidSignup;
   }
 
 }

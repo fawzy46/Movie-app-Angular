@@ -10,17 +10,9 @@ export class SignupService {
 
   url = 'http://localhost:8080/signup';
   isValidSignup = true;
-  AddUser(form: NgForm) {
-    const PostData = {
-      name: form.value.name,
-      email: form.value.email,
-      password: form.value.password
-    }
+  AddUser(PostData: any) {
 
-    this.http.post(this.url,PostData).subscribe(responseData => {
-      this.isValidSignup = !!responseData;
-      console.log(this.isValidSignup);
-    });
+    return this.http.post(this.url,PostData)
   }
 
   constructor(private http: HttpClient) { 
