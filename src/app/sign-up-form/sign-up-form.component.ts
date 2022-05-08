@@ -1,5 +1,7 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SignupService } from '../signup.service';
 import { ConfirmPasswordValidatorDirective } from './shared/confirm-password-validator.directive';
 
 @Component({
@@ -11,13 +13,13 @@ import { ConfirmPasswordValidatorDirective } from './shared/confirm-password-val
 
 export class SignUpFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private SignupService: SignupService) { }
 
   ngOnInit(): void {
   }
   onSubmit(form: NgForm)
   {
-    
+    this.SignupService.AddUser(form);
   }
 
 }
