@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Response } from './Response';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class AuthService implements OnInit {
   
   isLogedin: boolean = false;
   Token!: String;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
 
@@ -38,18 +40,25 @@ export class AuthService implements OnInit {
   }
   Login(form: NgForm)
   {
-    if(form.value.email === 'fawzy.fawzy46@gmail.com' && form.value.password === 'abc')
-    {
-      form.reset();
-      this.router.navigate(['catalog']);
-      this.isLogedin = true;
-      localStorage.setItem('token',String(this.isLogedin));
+    const PostData = {
+      email: form.value.email,
+      password: form.value.password
     }
-    else
-    {
-      alert("Invalid Credentials!")
-    }
+
+    const AuthRequest =  this.http.post<Response>('http://localhost:8080/auth', PostData).subscribe(res => {
+      console.log(res.status);
+      if(res.status) {
+        form.reset();
+        this.router.navigate(['catalog']);
+        this.isLogedin = true;
+        localStorage.setItem('token',String(this.isLogedin));
+      }
+      else {
+        alert(res.message);
+      }
+    });
   }
+
   Logout()
   {
     this.isLogedin = false;

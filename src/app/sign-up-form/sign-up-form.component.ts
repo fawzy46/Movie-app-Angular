@@ -28,8 +28,12 @@ export class SignUpFormComponent implements OnInit {
       email: form.value.email,
       password: form.value.password
     }
-    this.SignupService.AddUser(PostData).subscribe(response => this.isValidSignup = !!response);
-    this.isValidSignup = this.SignupService.isValidSignup;
+
+    this.SignupService.AddUser(PostData).subscribe(response => {this.isValidSignup = !!response
+      if(response) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 
 }

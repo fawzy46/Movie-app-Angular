@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 export class SignupService {
 
   url = 'http://localhost:8080/signup';
-  isValidSignup = true;
   AddUser(PostData: any) {
 
     return this.http.post(this.url,PostData)
